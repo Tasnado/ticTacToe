@@ -1,12 +1,32 @@
-const checkWinner = (allSpaces) => {
-    const winningCombo = [[1, 2, 3], [1, 4, 7], [1, 5, 9], [2, 5, 8], [3, 6, 9], [3, 5, 7], [4, 5, 6], [7, 8, 9]];
-    const placeholderVariable = "X";
-
-    // check is any of the spaces match the winning combinations
-    
+const gameOver = () => {
+    // show the game over screen
 }
 
-const currentTurn = () => {
+const checkWinner = (allSpaces) => {
+    const winningCombos = [[1, 2, 3], [1, 4, 7], [1, 5, 9], [2, 5, 8], [3, 6, 9], [3, 5, 7], [4, 5, 6], [7, 8, 9]];
+    const placeholderVariable = "X";
+    let winningCount = 0;
+
+    // check is any of the spaces match the winning combinations
+    winningCombos.forEach(combo => {
+        if (winningCount === 0) {
+            combo.forEach(currentCombo => {
+                if (allSpaces[currentCombo - 1].textContent === placeholderVariable) {
+                    winningCount++
+                } else if (allSpaces[currentCombo - 1].textContent !== placeholderVariable) {
+                    winningCount = 0;
+                    return;
+                }
+                // console.log(currentCombo)
+            })
+        } else if (winningCount === 3) {
+            return;
+        }
+    })
+
+}
+
+const decideTurn = (currentTurn) => {
     const player = "X";
     const computer = "O";
 
@@ -20,8 +40,10 @@ const currentTurn = () => {
     }
 
     // End game if all the spaces are filled out
-    if (emptySpaces === 0) {
-        return
+    if (emptySpaces !== 0) {
+        
+    } else {
+        return;
     }
 }
 
@@ -57,8 +79,9 @@ const setupBoard = (allSpaces) => {
 const init = () => {
     const allSpaces = document.querySelectorAll(".space");
     
-    setupBoard(allSpaces);
-    currentTurn(allSpaces)
+    // setupBoard(allSpaces);
+    // decideTurn(allSpaces)
+    checkWinner(allSpaces)
 }
 
 init()

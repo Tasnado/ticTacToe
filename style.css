@@ -8,12 +8,16 @@
     max-width: 1080px;
     width: 95%;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
 }
 
 .hide {
     display: none;
+}
+
+.gameBoardContainer {
+    display: flex;
+    justify-content: center;
+    position: relative;
 }
 
 .gameBoard {
@@ -44,4 +48,8 @@
 .space:hover,
 .space:focus {
     transform: scale(1.05);
+}
+
+.gameOver {
+    color: rebeccapurple;
 }
