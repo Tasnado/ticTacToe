@@ -7,27 +7,35 @@ const gameOver = () => {
     // Formulating an approach for environment management is these 20+ environments in a logical way so that it reduces confusion among team members. Resulting in 
     // Defects and bug resolution -> shows problem solver
     // configuration for demos to sell products
+    // 
 }
 
 const checkWinner = (allSpaces, currentTurn, player, computer) => {
     const winningCombos = [[1, 2, 3], [1, 4, 7], [1, 5, 9], [2, 5, 8], [3, 6, 9], [3, 5, 7], [4, 5, 6], [7, 8, 9]];
+    // const winningCombos = [[3, 6, 9], [3, 5, 7], [4, 5, 6], [7, 8, 9]];
     const placeholderVariable = "X";
     let winningCount = 0;
 
     // check is any of the spaces match the winning combinations
     winningCombos.forEach(combo => {
+
         if (winningCount === 0) {
-            combo.forEach(currentCombo => {
-                if (allSpaces[currentCombo - 1].textContent === placeholderVariable) {
-                    winningCount++
-                } else if (allSpaces[currentCombo - 1].textContent !== placeholderVariable) {
-                    winningCount = 0;
+            combo.forEach((currentCombo, index) => {
+                // Only continue if the first array value is a match
+                if (index > 0 && winningCount === 0) {
                     return;
+                } else {
+                    if (allSpaces[currentCombo - 1].textContent === placeholderVariable) {
+                        winningCount++
+                        if (winningCount === 3) {
+                            gameOver();
+                        }
+                    } else if (allSpaces[currentCombo - 1].textContent !== placeholderVariable) {
+                        winningCount = 0;
+                        return;
+                    }
                 }
-                // console.log(currentCombo)
             })
-        } else if (winningCount === 3) {
-            gameOver();
         }
     })
 
@@ -38,7 +46,7 @@ const computerTurn = (allSpaces, computer) => {
 
     do {
         computerChoice = Math.floor((Math.random() * 8) + 1);
-        console.log(computerChoice);
+        // console.log(computerChoice);
     } while (allSpaces[computerChoice].textContent != "");
 
     allSpaces[computerChoice].textContent = computer;
@@ -50,6 +58,7 @@ const playerTurn = (allSpaces, player, computer) => {
         space.addEventListener('click', function() {
             if (this.dataset.space !== computer || this.dataset.space !== player) {
                 this.textContent = player;
+                // console.log(this.dataset.space);
                 checkWinner(allSpaces)
             }
         })
