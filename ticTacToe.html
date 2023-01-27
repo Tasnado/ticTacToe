@@ -13,6 +13,9 @@
 </head>
 <body>
     <header>
+        <div class="wrapper">
+            <h1>Tic-Tac-Toe</h1>
+        </div>
     </header>
     <main>
         <div class="wrapper">
@@ -20,7 +23,11 @@
                 <div class="gameOver" id="gameOver">
                     <h2 class="gameOverText"></h2>
                 </div>
-                <div class="gameBoard" id="gameBoard">
+                <!-- <div class="buttons">
+                    <button id="start">Start</button>
+                    <button id="restart" class="hide">Restart</button>
+                </div> -->
+                <div class="gameBoard hide" id="gameBoard">
                     <div class="space" data-space="1"></div>
                     <div class="space" data-space="2"></div>
                     <div class="space" data-space="3"></div>
@@ -34,7 +41,6 @@
             </div>
         </div>
     </main>
-    <footer></footer>
 
     <script src="./script.js"></script>
 </body>

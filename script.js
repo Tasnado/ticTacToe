@@ -100,7 +100,7 @@ const setupBoard = (allSpaces) => {
 const init = () => {
     const allSpaces = document.querySelectorAll(".space");
     let player = "X";
-    let computer = "X"
+    let computer = "O"
     
     setupBoard(allSpaces);
     decideTurn(allSpaces, "player", player, computer);
